@@ -2,7 +2,7 @@
 
 **Find the girls missing from STEM classes at any US public high school.**
 
-[Live demo](https://sharonbasovich.github.io/missing-seats/) · [Two-minute walkthrough](demo-video-120s.mp4)
+[Live demo](https://sharonbasovich.github.io/missing-seats/) · [Two-minute walkthrough](https://youtu.be/WYZ3fI2Dbrg)
 
 Girls are 48.7% of US high-school enrollment but only 35.5% of computer-science
 students — about **144,000 missing seats** in our school-level estimate. Missing Seats turns the

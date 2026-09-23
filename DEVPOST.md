@@ -120,6 +120,4 @@ affiliated with the US Department of Education. Code: MIT.
 
 - Live demo: https://sharonbasovich.github.io/missing-seats/
 - Source code: https://github.com/sharonbasovich/missing-seats
-- Demo video: https://github.com/sharonbasovich/missing-seats/blob/main/demo-video-120s.mp4
-  (2:00, silent/captioned walkthrough; upload to a Devpost-supported video host
-  for the submission if required)
+- Demo video (2:00, silent/captioned walkthrough): https://youtu.be/WYZ3fI2Dbrg
