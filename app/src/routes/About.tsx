@@ -31,10 +31,10 @@ export default function About() {
           or in total enrollment.
         </li>
         <li>
-          <strong>Parity index</strong> = girls' course share ÷ girls'
-          enrollment share. 1.00 is exact parity. This is the method of UN SDG
-          indicator 4.5.1 ("parity indices (female/male …) for all education
-          indicators").
+          <strong>Representation ratio</strong> = girls' course share ÷ girls'
+          share of school enrollment. 1.00 means the course matches the
+          school's gender mix. This is our SDG 4.5-inspired parity measure,
+          not the official UN indicator 4.5.1.
         </li>
         <li>
           <strong>Missing seats</strong> = course enrollment × girls' share of
@@ -67,10 +67,10 @@ export default function About() {
         </li>
         <li>
           <strong>Gender categories:</strong> the CRDC reports male, female,
-          and a nonbinary (X) category. The parity ratio compares female and
-          male counts only — the federal binary does not capture all genders,
-          and X counts are small and heavily perturbed, so we display them
-          separately where reported.
+          and a nonbinary (X) category. Each share in our ratio is female ÷
+          (female + male). That binary does not capture all genders; X counts
+          are small and heavily perturbed, so we display them separately where
+          reported.
         </li>
         <li>
           <strong>Correlation, not cause:</strong> gaps have many causes
@@ -99,8 +99,9 @@ export default function About() {
           >
             <strong>SDG 4.5</strong>
           </a>{" "}
-          — eliminate gender disparities in education; indicator 4.5.1 is a
-          parity index, which is exactly our core metric.
+          — eliminate gender disparities in education. Our school-level
+          representation ratio helps surface these gaps but is not the
+          official indicator 4.5.1.
         </li>
         <li>
           <a

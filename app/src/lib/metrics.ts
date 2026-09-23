@@ -50,7 +50,7 @@ export function courseGirlsShare(c: CountTriple): number | null {
   return girlsShare(c[1], c[0]);
 }
 
-/** SDG indicator 4.5.1-style parity index:
+/** Our SDG 4.5-inspired representation ratio, not official indicator 4.5.1:
  *  (girls' share of the course) / (girls' share of enrollment).
  *  1.0 = parity; 0.64 means girls hold 64% of the seats they would at parity. */
 export function parityIndex(

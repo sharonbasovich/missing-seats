@@ -127,7 +127,7 @@ export default function CourseTile({
       <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
         <div>
           <dt className="text-xs uppercase tracking-wide text-ink-2">
-            Parity index
+            Representation ratio
           </dt>
           <dd className="font-bold">
             {fmtIndex(parity)}

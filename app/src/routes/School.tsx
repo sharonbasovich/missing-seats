@@ -164,8 +164,8 @@ export default function School() {
         Source: US ED OCR, 2023–24 CRDC public-use file. Counts may differ by
         ±1 (federal privacy perturbation). Negative federal reserve codes
         (suppressed / not applicable) are shown as "Not reported", never as
-        zero. Girls' share compares female vs. male counts; the CRDC's
-        nonbinary counts are shown separately and excluded from the parity
+        zero. Girls' share is female ÷ (female + male); the CRDC's nonbinary
+        counts are shown separately and excluded from our representation
         ratio. <Link to="/about" className="underline">Method &amp; caveats</Link>
       </p>
     </div>

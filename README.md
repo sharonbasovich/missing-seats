@@ -2,8 +2,10 @@
 
 **Find the girls missing from STEM classes at any US public high school.**
 
+[Live demo](https://sharonbasovich.github.io/missing-seats/) · [Two-minute walkthrough](demo-video-120s.mp4)
+
 Girls are 48.7% of US high-school enrollment but only 35.5% of computer-science
-students — about **144,000 missing seats** nationwide. Missing Seats turns the
+students — about **144,000 missing seats** in our school-level estimate. Missing Seats turns the
 1.1 GB federal file behind that number into a 5-second lookup: type a school,
 see its gender participation gaps in Computer Science, AP Computer Science,
 Calculus, Physics, and Data Science, compare it with similar schools in its
@@ -16,14 +18,13 @@ or principal.
   [2023–24 Civil Rights Data Collection (CRDC)](https://ocrdata.ed.gov/data)
   public-use file — 25,867 schools reporting grade 12.
 
-Built for the **Acodemic X G.I.R.L.S. Global SDG Hackathon** (submission Sept 26,
-2026).
+Built for the **Acodemic X G.I.R.L.S. Global SDG Hackathon**.
 
 ## SDG mapping
 
 | SDG | How Missing Seats maps to it |
 |---|---|
-| **4.5** — eliminate gender disparities in education | The app's core metric *is* UN indicator **4.5.1**, a parity index (female/male), computed per school per course. |
+| **4.5** — eliminate gender disparities in education | A school-level, SDG 4.5-inspired parity measure surfaces course-participation gaps; it is not the official UN indicator 4.5.1. |
 | **5.b** — enabling technology for women's empowerment | Turns an official but unusable 1.1 GB federal dataset into a free public tool a student, parent, or counselor can use in seconds. |
 | **4.4 / 5.5** — relevant skills; women's participation | Surfaces course-taking gaps in the subjects that gate STEM pathways, with a concrete ask a school can act on. |
 
@@ -52,8 +53,9 @@ CRDC CSVs (latin-1)            static JSON shards            static SPA
 ### Definitions (see in-app *Data & method* page for the full version)
 
 - **Girls' share** = female ÷ (female + male).
-- **Parity index** = girls' course share ÷ girls' enrollment share. `1.00` =
-  parity. This is the SDG 4.5.1 method.
+- **Representation ratio** = girls' course share ÷ girls' share of school
+  enrollment. `1.00` means the course matches the school's gender mix. This is
+  our SDG 4.5-inspired parity measure, not official indicator 4.5.1.
 - **Missing seats** = course enrollment × girls' enrollment share − girls
   enrolled, floored at 0. *Our descriptive calculation — not a federal
   statistic or a legal finding.*
@@ -68,9 +70,9 @@ CRDC CSVs (latin-1)            static JSON shards            static SPA
 ### Gender categories — an honest note
 
 The federal file reports male, female, and a nonbinary (X) category. X counts
-are small, frequently suppressed, and the most heavily perturbed. The parity
-index compares female vs. male counts — **the federal binary does not capture
-all genders** — and X counts are displayed separately wherever reported.
+are small, frequently suppressed, and the most heavily perturbed. Both shares
+in our ratio use female ÷ (female + male) — **the federal binary does not
+capture all genders** — and X counts are displayed separately wherever reported.
 
 ## Limitations
 
@@ -117,9 +119,9 @@ npm test           # vitest: parsing, gap calculations, edge cases
 
 ## Deploy
 
-`app/dist` is a fully static bundle. Deployed to a static host as-is.
-`deploy.sh`-free: any static host works (the demo runs on devinapps.com; GitHub
-Pages needs no config thanks to hash routing).
+`app/dist` is a fully static bundle. The public demo runs on GitHub Pages. Build
+with `vite build --base=/missing-seats/` for this repository's Pages subpath;
+the app uses hash routing and `import.meta.env.BASE_URL` for its data files.
 
 ## Licenses
 

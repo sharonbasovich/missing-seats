@@ -160,7 +160,7 @@ export default function ActionPack() {
                 <th className="py-1 pr-3">Course</th>
                 <th className="py-1 pr-3 text-right">Girls / total</th>
                 <th className="py-1 pr-3 text-right">Girls' share</th>
-                <th className="py-1 pr-3 text-right">Parity index</th>
+                <th className="py-1 pr-3 text-right">Representation ratio</th>
                 <th className="py-1 text-right">Missing seats</th>
               </tr>
             </thead>
@@ -192,8 +192,9 @@ export default function ActionPack() {
             </tbody>
           </table>
           <p className="mt-1 text-xs text-ink-2">
-            Parity index 1.00 = girls' course share equals their enrollment
-            share (SDG indicator 4.5.1 method). Missing seats = course size ×
+            Representation ratio = girls' course share ÷ girls' share of school
+            enrollment; 1.00 means a match. This SDG 4.5-inspired measure is
+            not official indicator 4.5.1. Missing seats = course size ×
             girls' enrollment share − girls enrolled (floored at 0); our
             descriptive calculation, not a federal statistic.
           </p>
@@ -248,7 +249,7 @@ export default function ActionPack() {
             Source: US Dept. of Education OCR, Civil Rights Data Collection
             2023–24 public-use file (ocrdata.ed.gov/data). Counts may differ by
             ±1 (federal privacy perturbation). "Not reported" = federal reserve
-            code, not zero. Parity compares female vs. male counts; nonbinary
+            code, not zero. Each share uses female ÷ (female + male); nonbinary
             counts are excluded from the ratio because they are small and
             heavily perturbed. Gaps have many causes — this pack shows where a
             gap exists and that peers closed it, not why. Missing Seats is an
