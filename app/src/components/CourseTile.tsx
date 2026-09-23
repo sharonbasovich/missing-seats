@@ -72,7 +72,7 @@ export default function CourseTile({
             className="rounded-full bg-accent/10 px-2 py-0.5 text-xs font-semibold text-accent"
             title={`Girls' share is higher than ${pctile}% of ${school.s} high schools with at least 20 students in this course`}
           >
-            top {Math.max(1, 100 - pctile)}% in {school.s}
+            better than {pctile}% of {school.s} schools
           </span>
         )}
         {lowN && (
