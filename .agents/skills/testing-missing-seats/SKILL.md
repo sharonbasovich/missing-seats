@@ -30,5 +30,12 @@ description: How to run and E2E-test the Missing Seats static web app (vite prev
 - CSV download from `/#/state/<CC>` lands in `~/Downloads/missing-seats-<CC>-cs-girls-share.csv`; compare rows to `states/<CC>.json` with grep.
 - For exact-value checks, `python3 -c "import json; ..."` over the state shard is far faster than reading the federal raw files in `data_raw/`.
 
+## Demo-video recording notes (Devpost-style silent walkthroughs)
+- `recording_start`/`recording_stop` produces an *edited* mp4 in `~/screencasts/<id>/` that compresses idle/scroll footage ~3.5-4x and renders a "Nx" speed badge top-right during fast sections — a ~400s raw take yields only ~90-100s edited. Budget raw time accordingly if a minimum duration is needed, or slow the result with `ffmpeg -filter:v "setpts=1.25*PTS" -r 60`.
+- Use `annotate_recording` with **setup-type only** as silent captions (test_start/assertion render "TEST:"/"[PASS]" artifacts unsuitable for a demo). Each annotation anchors a real-time slowdown window — ~15 captions is a good density for a full-app tour.
+- Never put URLs in captions unless verified against the repo — `DEVPOST.md` has a `<INSERT devinapps.com URL>` placeholder; there is no canonical public URL. If a bad caption is baked in, it appears near the annotation's `edited_time_s` in `<id>-annotations.json`; the video can be trimmed with ffmpeg to end just before it.
+- SPA quirks on camera: browser reload does NOT remount the landing CountUp animation — navigate away (e.g. "Data & method") and back via the logo to re-trigger it. Scroll position carries between routes; press `Home` after page changes. The Action Pack "Copied!" label lasts only ~2s real (a few frames in the edited cut — capture a screenshot right after clicking to confirm).
+- Videos are h264 video-only (no audio track), 1600x1200 @ 60fps at fullscreen.
+
 ## Devin Secrets Needed
 - None.

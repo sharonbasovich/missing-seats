@@ -115,6 +115,10 @@ affiliated with the US Department of Education. Code: MIT.
 
 ## Links
 
-- Live demo: <INSERT devinapps.com URL>
-- Source code: <INSERT repo URL or "attached bundle/archive">
-- Demo video: <INSERT if filmed>
+- Live demo: https://eval-divide-species-controls.trycloudflare.com
+  (temporary quick tunnel — replace with the durable hosting URL before submitting)
+- Source code: git bundle `missing-seats.bundle` / `missing-seats-source.tar.gz`
+  (see the files link or attach to the submission; replace with the public repo
+  URL once hosted)
+- Demo video: `demo-video-120s.mp4` (2:00, silent/captioned, real walkthrough —
+  upload to Devpost or an unlisted YouTube link)
