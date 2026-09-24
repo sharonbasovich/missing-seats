@@ -51,6 +51,10 @@ export default function PeerTable({
       </p>
       <div className="mt-3 overflow-x-auto">
         <table className="w-full text-left text-sm">
+          <caption className="sr-only">
+            Similar-size {school.s} schools with the highest girls' share in{" "}
+            {COURSE_LABEL[course]}
+          </caption>
           <thead>
             <tr className="border-b border-line text-xs uppercase tracking-wide text-ink-2">
               <th scope="col" className="py-2 pr-4 font-semibold">

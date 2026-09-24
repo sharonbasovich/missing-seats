@@ -1,14 +1,14 @@
 # Missing Seats — E2E browser test plan
 
-App: http://127.0.0.1:4173/ (vite preview of /home/ubuntu/missing-seats/app/dist, hash routing)
-Screenshots → /home/ubuntu/missing-seats/screenshots/
+App: http://127.0.0.1:4173/ (vite preview of /home/ubuntu/repos/missing-seats/app/dist, hash routing)
+Screenshots → /home/ubuntu/repos/missing-seats/screenshots/
 Record screen throughout; maximize Chrome first (wmctrl).
 
 Expected values were verified against /app/dist/data shards (TX.json, NJ.json, WY.json, national.json, index.json) before writing this plan — the UI must reproduce them.
 
 ## Test 1 — Landing page + typeahead
 1. Navigate to http://127.0.0.1:4173/. Wait for counters.
-   - PASS if: hero shows ~"49%" girls share of enrollment and ~"35%" of CS students; three stat cards show ≈144,297 missing CS seats, 1,083 zero-girl CS schools, 23% at parity (2125/9068=23.4%→23%); by-course bar chart renders 6 course rows (CS, AP CS, Calculus, Physics, Data Science, All AP) with gold parity mark.
+   - PASS if: hero shows ~"49%" girls share of enrollment and ~"35%" of CS students; four stat cards show ≈144,297 missing CS seats, 1,083 zero-girl CS schools, 23% at parity (2125/9068=23.4%→23%), and 12,397 schools reporting zero CS classes; by-course bar chart renders 6 course rows (CS, AP CS, Calculus, Physics, Data Science, All AP) with gold parity mark.
 2. Click search box, type "heritage". Screenshot 01-landing-search.png with dropdown open.
    - PASS if: typeahead dropdown opens with ≤8 results showing name+district+state badge.
 3. Keyboard nav: press ArrowDown twice, then Enter on a highlighted result → navigates to a /#/school/ page. Then go back to home.

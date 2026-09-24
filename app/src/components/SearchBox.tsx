@@ -10,6 +10,7 @@ export default function SearchBox({ autoFocus = false }: { autoFocus?: boolean }
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(-1);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const indexRef = useRef<IndexEntry[] | null>(null);
   const navigate = useNavigate();
   const listId = useId();
@@ -21,10 +22,19 @@ export default function SearchBox({ autoFocus = false }: { autoFocus?: boolean }
       return;
     }
     let cancelled = false;
+    setError(null);
     const t = setTimeout(async () => {
       if (!indexRef.current) {
         setLoading(true);
-        indexRef.current = await getIndex();
+        try {
+          indexRef.current = await getIndex();
+        } catch {
+          if (!cancelled) {
+            setLoading(false);
+            setError("Could not load school data — check your connection and refresh.");
+          }
+          return;
+        }
         setLoading(false);
       }
       if (cancelled) return;
@@ -83,6 +93,11 @@ export default function SearchBox({ autoFocus = false }: { autoFocus?: boolean }
       {loading && (
         <p className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-ink-2">
           loading…
+        </p>
+      )}
+      {error && (
+        <p role="alert" className="mt-2 text-sm text-warn">
+          {error}
         </p>
       )}
       {open && results.length > 0 && (

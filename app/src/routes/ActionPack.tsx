@@ -20,6 +20,7 @@ const COURSE_LABEL: Record<string, string> = {
   calc: "Calculus",
   phys: "Physics",
   dsci: "Data Science",
+  apall: "All AP courses",
 };
 
 const STEPS = [
@@ -74,14 +75,27 @@ export default function ActionPack() {
   const { key } = useParams<{ key: string }>();
   const [school, setSchool] = useState<SchoolRecord | null>(null);
   const [stateSchools, setStateSchools] = useState<SchoolRecord[]>([]);
+  const [status, setStatus] = useState<"loading" | "ok" | "missing" | "error">(
+    "loading",
+  );
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
+    setStatus("loading");
+    setSchool(null);
     (async () => {
-      const s = await getSchool(key ?? "");
-      if (!s) return;
-      setSchool(s);
-      setStateSchools(await getState(s.s));
+      try {
+        const s = await getSchool(key ?? "");
+        if (!s) {
+          setStatus("missing");
+          return;
+        }
+        setSchool(s);
+        setStateSchools(await getState(s.s));
+        setStatus("ok");
+      } catch {
+        setStatus("error");
+      }
     })();
   }, [key]);
 
@@ -90,8 +104,31 @@ export default function ActionPack() {
     [stateSchools, school],
   );
 
-  if (!school)
+  if (status === "loading")
     return <p className="py-16 text-center text-ink-2">Loading Action Pack…</p>;
+  if (status === "missing")
+    return (
+      <div className="py-16 text-center">
+        <p className="text-lg font-semibold">School not found</p>
+        <p className="mt-2 text-ink-2">
+          That link doesn't match a grade-12 public school in the 2023–24 CRDC.{" "}
+          <Link to="/" className="text-accent underline">
+            Search for a school
+          </Link>
+          .
+        </p>
+      </div>
+    );
+  if (status === "error" || !school)
+    return (
+      <p className="py-16 text-center text-warn">
+        Something went wrong loading the data. Try refreshing.{" "}
+        <Link to="/" className="text-accent underline">
+          Back to search
+        </Link>
+        .
+      </p>
+    );
 
   const enrShare = enrollmentGirlsShare(school.e);
   const email = buildEmail(school);
@@ -165,7 +202,7 @@ export default function ActionPack() {
               </tr>
             </thead>
             <tbody>
-              {COURSES.filter(({ key }) => key !== "apall").map(({ key }) => {
+              {COURSES.map(({ key }) => {
                 const c = school[key];
                 if (!isReported(c[0]) || !isReported(c[1])) return null;
                 const share = courseGirlsShare(c);

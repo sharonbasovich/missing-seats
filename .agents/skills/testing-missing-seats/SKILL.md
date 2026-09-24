@@ -6,8 +6,8 @@ description: How to run and E2E-test the Missing Seats static web app (vite prev
 # Testing the Missing Seats app
 
 ## Stack
-- Static React + vite build under `/home/ubuntu/missing-seats/app` (source in `src/`, production build in `app/dist/`).
-- Serve the build with `npm exec vite preview --port 4173 --host 127.0.0.1` from `app/` (already-running in prior sessions; check `ss -tlnp | grep 4173` before starting a second one).
+- Static React + vite build under `/home/ubuntu/repos/missing-seats/app` (source in `src/`, production build in `app/dist/`).
+- Serve the build with `./node_modules/.bin/vite preview --port 4173 --host 127.0.0.1` from `app/` (check `ss -tlnp | grep 4173` for an already-running server first; note `npm exec vite preview --port …` mangles the flags into positional args and 404s everything).
 - No backend, no login, no secrets needed. Pure client-side app reading JSON from `/data/`.
 
 ## Routing

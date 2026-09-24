@@ -11,6 +11,7 @@ export const COURSES: { key: CourseKey; label: string; short: string }[] = [
   { key: "calc", label: "Calculus", short: "Calc" },
   { key: "phys", label: "Physics", short: "Phys" },
   { key: "dsci", label: "Data Science", short: "Data Sci" },
+  { key: "apall", label: "All AP courses", short: "All AP" },
 ];
 
 export interface SchoolRecord {

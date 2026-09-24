@@ -45,7 +45,7 @@ export default function Home() {
       {nat && cs && (
         <section
           aria-label="National numbers"
-          className="mt-12 grid gap-4 sm:grid-cols-3"
+          className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
         >
           <div className="rounded-xl border border-line bg-card p-5 text-center">
             <p className="text-3xl font-extrabold text-accent">
@@ -69,6 +69,15 @@ export default function Home() {
             </p>
             <p className="mt-1 text-sm text-ink-2">
               of schools with ≥20 CS students reach ≥45% girls
+            </p>
+          </div>
+          <div className="rounded-xl border border-line bg-card p-5 text-center">
+            <p className="text-3xl font-extrabold text-accent">
+              <CountUp value={nat.schools - nat.offering_cs} />
+            </p>
+            <p className="mt-1 text-sm text-ink-2">
+              high schools report zero computer-science classes — the missing
+              seats start with no seats at all
             </p>
           </div>
         </section>
