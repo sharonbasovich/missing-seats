@@ -42,14 +42,23 @@ function Nav() {
 export default function App() {
   return (
     <HashRouter>
-      <a href="#main" className="skip-link">
+      <a
+        href="#main"
+        className="skip-link"
+        onClick={(e) => {
+          e.preventDefault();
+          const main = document.getElementById("main");
+          main?.focus();
+          main?.scrollIntoView();
+        }}
+      >
         Skip to content
       </a>
       <Routes>
         <Route
           path="/school/:key/pack"
           element={
-            <main id="main">
+            <main id="main" tabIndex={-1}>
               <ActionPack />
             </main>
           }
@@ -59,7 +68,7 @@ export default function App() {
           element={
             <>
               <Nav />
-              <main id="main" className="mx-auto max-w-5xl px-4 pb-16">
+              <main id="main" tabIndex={-1} className="mx-auto max-w-5xl px-4 pb-16">
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/school/:key" element={<School />} />

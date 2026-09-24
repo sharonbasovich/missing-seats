@@ -1,41 +1,31 @@
 ---
 name: testing-missing-seats
-description: How to run and E2E-test the Missing Seats static web app (vite preview, hash routing, data shards) on this machine.
+description: How to run and E2E-test the Missing Seats Vite/React hash-router app locally, including preview-server gotchas, hash routes, and data-shard ground truth
 ---
 
 # Testing the Missing Seats app
 
-## Stack
-- Static React + vite build under `/home/ubuntu/repos/missing-seats/app` (source in `src/`, production build in `app/dist/`).
-- Serve the build with `./node_modules/.bin/vite preview --port 4173 --host 127.0.0.1` from `app/` (check `ss -tlnp | grep 4173` for an already-running server first; note `npm exec vite preview --port …` mangles the flags into positional args and 404s everything).
-- No backend, no login, no secrets needed. Pure client-side app reading JSON from `/data/`.
+Static Vite + React app in `app/` (repo root: missing-seats). No backend, no auth — all data is static JSON in `app/dist/data/`.
 
-## Routing
-- Hash routing (react-router HashRouter): `/#/`, `/#/school/<key>`, `/#/school/<key>/pack`, `/#/states`, `/#/state/<CC>`, `/#/about`.
-- School keys are 12-digit NCES-style combokeys, e.g. `482001012192` (HERITAGE H S, Frisco TX), `340228000173` (Bridgewater-Raritan NJ), `560126000041` (Big Piney WY).
+## Run
 
-## Data shards (verify expected values here BEFORE checking the UI)
-- `app/dist/data/index.json` — 25,867-entry search index: `{k, n, d, s, e}`.
-- `app/dist/data/states/<CC>.json` — per-state school records: `e`/`cs`/`apcs`/`calc`/`phys`/`dsci`/`apall` are `[male, female, nonbinary]` triples; `p` = state percentiles; `csclasses` = # CS classes offered.
-- `app/dist/data/national.json` — aggregate counters shown on landing.
-- Negative values are federal reserve codes (-9 not applicable, -10 suppressed…) rendered as "Not reported", never zero. Course totals <20 get a "small group" badge and are excluded from peer pools/percentiles.
-- `missing seats = round(courseTotal × girls' enrollment share − girls enrolled)`, floored at 0. `parity index = girls' course share ÷ girls' enrollment share`.
+- Build: `cd app && npm run build` (tsc -b && vite build → app/dist)
+- Serve the build: `cd app && ./node_modules/.bin/vite preview --port 4173 --host 127.0.0.1`
+- Check first with `ss -tlnp | grep 4173` — a preview server is often already running.
+- Do NOT use `npm exec vite preview` — it mangles the --port/--host flags.
+- Unit tests: `cd app && npm test` (vitest).
 
-## Useful test schools
-- HERITAGE H S, Frisco TX (`482001012192`) — large school, all courses reported.
-- BIG PINEY HIGH SCHOOL, WY (`560126000041`) — edge cases: "small group" badges, Physics "Not reported", Data Science tile hidden, 5-school peer pool.
-- Search tip: typeahead shows top 8 name-matches ranked by enrollment; multi-token queries like "heritage frisco" or "big piney" narrow well. Arrow keys + Enter work; Escape closes.
+## Routes (HashRouter — note the `/#/` prefix)
 
-## Verification shortcuts
-- CSV download from `/#/state/<CC>` lands in `~/Downloads/missing-seats-<CC>-cs-girls-share.csv`; compare rows to `states/<CC>.json` with grep.
-- For exact-value checks, `python3 -c "import json; ..."` over the state shard is far faster than reading the federal raw files in `data_raw/`.
+`/#/` landing, `/#/school/<key>` school page, `/#/school/<key>/pack` action pack, `/#/states`, `/#/state/<CC>`, `/#/about`. Any other hash → "Page not found". Useful keys: `482001012192` = HERITAGE H S (Frisco ISD TX, rich data), `560126000041` = Big Piney HS WY (small-group + suppressed data).
 
-## Demo-video recording notes (Devpost-style silent walkthroughs)
-- `recording_start`/`recording_stop` produces an *edited* mp4 in `~/screencasts/<id>/` that compresses idle/scroll footage ~3.5-4x and renders a "Nx" speed badge top-right during fast sections — a ~400s raw take yields only ~90-100s edited. Budget raw time accordingly if a minimum duration is needed, or slow the result with `ffmpeg -filter:v "setpts=1.25*PTS" -r 60`.
-- Use `annotate_recording` with **setup-type only** as silent captions (test_start/assertion render "TEST:"/"[PASS]" artifacts unsuitable for a demo). Each annotation anchors a real-time slowdown window — ~15 captions is a good density for a full-app tour.
-- Never put URLs in captions unless verified against the repo — `DEVPOST.md` has a `<INSERT devinapps.com URL>` placeholder; there is no canonical public URL. If a bad caption is baked in, it appears near the annotation's `edited_time_s` in `<id>-annotations.json`; the video can be trimmed with ffmpeg to end just before it.
-- SPA quirks on camera: browser reload does NOT remount the landing CountUp animation — navigate away (e.g. "Data & method") and back via the logo to re-trigger it. Scroll position carries between routes; press `Home` after page changes. The Action Pack "Copied!" label lasts only ~2s real (a few frames in the edited cut — capture a screenshot right after clicking to confirm).
-- Videos are h264 video-only (no audio track), 1600x1200 @ 60fps at fullscreen.
+## Gotchas
+
+- HashRouter + plain anchors: `<a href="#x">` rewrites the route hash (e.g. `#main` → route `/main` → 404). Verify any in-page anchor/skip-link by actually activating it.
+- Landing search input is auto-focused (`<SearchBox autoFocus/>`), so first Tab moves forward from it — use Shift+Tab to reach elements earlier in DOM order (e.g. the skip link).
+- Data ground truth: `dist/data/national.json` (national stats), `dist/data/states/<CC>.json` (list of school records, key field `k`). Course arrays are `[male, female, nonbinary]`; negative values are federal reserve codes shown as "Not reported", never zero. `csclasses` = CS class count. `p` = percentile vs state.
+- Chrome min window width (~500px) blocks resizing to a true 430px phone width — a ~530px window still exercises sub-640px (sm:) breakpoints.
 
 ## Devin Secrets Needed
-- None.
+
+None.
