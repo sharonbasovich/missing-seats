@@ -1,0 +1,14 @@
+# https://docs.devin.ai/onboard-devin/environment-yaml
+maintenance: |
+  (cd app && npm install)
+knowledge:
+  - name: test
+    contents: |
+      cd app && npm test   # vitest, 28 tests
+  - name: build
+    contents: |
+      cd app && npm run build   # tsc -b && vite build -> app/dist
+  - name: preview
+    contents: |
+      cd app && ./node_modules/.bin/vite preview --port 4173 --host 127.0.0.1
+      # hash routes: /#/  /#/school/<key>  /#/school/<key>/pack  /#/states  /#/state/<CC>  /#/about
