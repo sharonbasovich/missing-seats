@@ -99,6 +99,9 @@ export default function School() {
           {fmtCount(em)} boys, {fmtCount(ef)} girls
           {isReported(ex) && ex > 0 ? `, ${ex} nonbinary` : ""})
           {enrShare !== null && <> — girls {fmtPct(enrShare)}</>}
+          {isReported(school.csclasses) && school.csclasses > 0 && (
+            <> · {school.csclasses} CS classes</>
+          )}
         </p>
       </header>
 

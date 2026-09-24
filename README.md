@@ -8,9 +8,10 @@ Girls are 48.7% of US high-school enrollment but only 35.5% of computer-science
 students — about **144,000 missing seats** in our school-level estimate. Missing Seats turns the
 1.1 GB federal file behind that number into a 5-second lookup: type a school,
 see its gender participation gaps in Computer Science, AP Computer Science,
-Calculus, Physics, and Data Science, compare it with similar schools in its
-state that closed the gap, and print a one-page **Action Pack** for a counselor
-or principal.
+Calculus, Physics, Data Science, and all AP courses — where girls are the
+majority nationally, proof the CS gap isn't about advanced coursework —
+compare it with similar schools in its state that closed the gap, and print a
+one-page **Action Pack** for a counselor or principal.
 
 - **No login, no backend, no API keys, no cookies.** Static site + build-time
   data pipeline.
@@ -119,9 +120,11 @@ npm test           # vitest: parsing, gap calculations, edge cases
 
 ## Deploy
 
-`app/dist` is a fully static bundle. The public demo runs on GitHub Pages. Build
-with `vite build --base=/missing-seats/` for this repository's Pages subpath;
-the app uses hash routing and `import.meta.env.BASE_URL` for its data files.
+`app/dist` is a fully static bundle. The public demo runs on GitHub Pages.
+`npm run build` uses a relative base (`base: "./"` in `vite.config.ts`), so
+the bundle works on the `/missing-seats/` Pages subpath — or any other path —
+with no extra flags; the app uses hash routing and `import.meta.env.BASE_URL`
+for its data files.
 
 ## Licenses
 

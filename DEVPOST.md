@@ -29,9 +29,11 @@ open. We wanted anyone — a student club, a counselor, a parent — to look up
 
 - **Search** ~26,000 US public high schools (every school reporting grade 12)
   — instant typeahead, keyboard navigable.
-- **Gap Card**: for CS, AP CS, Calculus, Physics, and Data Science — girls'
-  share, a representation ratio (girls' course share ÷ girls' share of school
-  enrollment), "missing seats" at parity, and a state percentile.
+- **Gap Card**: for CS, AP CS, Calculus, Physics, Data Science, and all AP
+  courses — girls' share, a representation ratio (girls' course share ÷
+  girls' share of school enrollment), "missing seats" at parity, and a state
+  percentile. The All-AP tile is the quiet rebuttal to "it's just interest":
+  girls are the majority of AP students — above parity — but a third of CS.
 - **Peer proof**: the top same-state, same-size schools that actually closed
   the gap — proof the gap is closable, not "interest".
 - **Action Pack**: a printable one-page brief with the numbers, the peers,
@@ -53,12 +55,15 @@ open. We wanted anyone — a student club, a counselor, a parent — to look up
 ## Proof of value (our calculations from CRDC 2023–24)
 
 - Girls: 48.7% of 17.1M high-school enrollment; 35.5% of 1.06M CS enrollment;
-  32.1% of AP CS; 47.2% of calculus; 44.7% of physics.
+  32.1% of AP CS; 47.2% of calculus; 44.7% of physics — but 54.8% of all AP
+  students, above parity.
 - ~144,000 estimated girls' seats missing from CS at enrollment parity, summed
   across the included schools; this is our descriptive calculation.
 - 1,083 high schools report CS students but zero girls.
 - Only ~23% of schools with ≥20 CS students reach ≥45% girls in CS, according
   to our calculation from the CRDC file.
+- 12,397 high schools — nearly half — report zero computer-science classes,
+  so for many girls the missing seats start with no seats at all.
 
 ## How we built it
 
